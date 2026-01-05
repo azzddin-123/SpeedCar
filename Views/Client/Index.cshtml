@@ -1,0 +1,39 @@
+﻿@model List<SpeedCar.Models.Message>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">💬 Discussion avec le mécanicien</h3>
+
+<div class="card p-3 mb-3" style="height:350px; overflow-y:auto;">
+    @foreach (var m in Model)
+    {
+        if (m.SenderId.ToString() == Context.Session.GetString("UserId"))
+        {
+            <!-- Message CLIENT -->
+            <div class="text-end mb-2">
+                <div class="alert alert-primary d-inline-block">
+                    <small class="text-muted">Vous</small><br />
+                    @m.Content
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Message MÉCANICIEN -->
+            <div class="text-start mb-2">
+                <div class="alert alert-secondary d-inline-block">
+                    <small class="text-muted">Mécanicien</small><br />
+                    @m.Content
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<form method="post" action="/Client/SendMessage">
+    <div class="input-group">
+        <input name="content" class="form-control" placeholder="Votre message..." required />
+        <button class="btn btn-primary">Envoyer</button>
+    </div>
+</form>

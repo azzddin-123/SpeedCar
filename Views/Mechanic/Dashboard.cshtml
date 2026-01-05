@@ -1,0 +1,48 @@
+﻿<h2>🛠️ Dashboard Mécanicien</h2>
+
+<div class="card p-4 mt-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Email</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.Email</td>
+                    <td>
+                        @if (c.IsBlocked)
+                        {
+                            <span class="badge bg-danger">Bloqué</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Actif</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary"
+                           href="/Mechanic/Chat/@c.Id">💬</a>
+
+                        @if (c.IsBlocked)
+                        {
+                            <a class="btn btn-sm btn-success"
+                               href="/Mechanic/Unblock/@c.Id">🔓</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-sm btn-danger"
+                               href="/Mechanic/Block/@c.Id">⛔</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

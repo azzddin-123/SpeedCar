@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h4 class="text-center mb-3">Inscription Client</h4>
+            <form method="post">
+                <input name="Name" class="form-control mb-2" placeholder="Nom complet" required />
+                <input name="Email" class="form-control mb-2" placeholder="Email" required />
+                <input name="Password" type="password" class="form-control mb-2" placeholder="Mot de passe" required />
+                <button class="btn btn-success w-100">S'inscrire</button>
+            </form>
+            <a href="/Auth/Login" class="text-center mt-3">Déjà inscrit ?</a>
+        </div>
+    </div>
+</div>

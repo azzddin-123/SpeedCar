@@ -1,0 +1,46 @@
+﻿@model List<SpeedCar.Models.Message>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">💬 Discussion avec le client</h3>
+
+<!-- Zone messages -->
+<div class="chat-container mb-3">
+    @foreach (var m in Model)
+    {
+        if (m.SenderId.ToString() == ViewBag.ClientId)
+        {
+            <!-- Message client -->
+            <div class="msg-client">
+                <strong>Client :</strong><br />
+                @m.Content
+            </div>
+        }
+        else
+        {
+            <!-- Message mécanicien -->
+            <div class="msg-mechanic">
+                <strong>Vous :</strong><br />
+                @m.Content
+            </div>
+        }
+    }
+</div>
+
+<!-- Zone création message -->
+<div class="card p-3">
+    <form method="post" action="/Mechanic/Reply" class="d-flex gap-2">
+        <input type="hidden" name="clientId" value="@ViewBag.ClientId" />
+
+        <input type="text"
+               name="content"
+               class="form-control"
+               placeholder="Écrire votre réponse au client..."
+               required />
+
+        <button class="btn btn-success px-4">
+            ➤ Envoyer
+        </button>
+    </form>
+</div>
